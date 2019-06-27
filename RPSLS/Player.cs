@@ -11,10 +11,8 @@ namespace RPSLS
     public string gesture;
     public int wins = 0;
 
-    public virtual void GetGesture(List<string> g)
-    {
-
-    }
+    public abstract void GetGesture(List<string> g);
+ 
     public void ShowGesture()
     {
       Console.WriteLine($"{this} chose {this.gesture}");

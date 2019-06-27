@@ -18,7 +18,7 @@ namespace RPSLS
       // use random method to generate a random gesture and set it equal to this.gesture
       // random number created to grab gesture by index
       Random randomNumber = new Random();
-      this.randomGesture = randomNumber.Next(0, 5);
+      this.randomGesture = randomNumber.Next(0, gestures.Count);
       this.gesture = gestures[this.randomGesture];
     }
   }

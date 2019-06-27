@@ -1,26 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RPSLS
 {
   class Game
   {
     // initialize gestures array
-    List<string> gestures = new List<string>() {"rock", "paper", "scissors", "spock", "lizard"};
+    List<string> gestures;
     string players;
     Player player1;
     Player player2;
 
     public Game(string players)
     {
+      this.gestures = new List<string>() { "rock", "paper", "scissors", "spock", "lizard" };
       this.players = players;
     }
 
+    // helper method to check userinput
+    public bool CheckInput(string input, List<string> actions)
+    {
+      for (int i = 0; i < actions.Count; i++)
+      {
+        if (input != actions[i])
+        {
+          return false;
+        }
+      }
+      return true;
+    }
     public void SetupGame()
     {
+      // call check input helper method in here before creating player objects
+
       if (players == "single player")
       {
         // create one human player and one ai player
@@ -51,20 +63,20 @@ namespace RPSLS
       Console.WriteLine("GAME OVER");
       Console.ReadLine();
 
-/*      for (int i = 0; i < 4; i++)
-      {
-        player1.GetGesture(gestures);
-        player2.GetGesture(gestures);
-        ShowDown();
-        if (player1.CheckWins() || player2.CheckWins())
-        {
-          Console.ReadLine();
-          break;
-        }
-        Console.WriteLine($"Player 1 wins: {player1.wins}");
-        Console.WriteLine($"Player 2 wins: {player2.wins}");
-        Console.WriteLine("END OF ROUND");
-      }*/
+      /*      for (int i = 0; i < 4; i++)
+            {
+              player1.GetGesture(gestures);
+              player2.GetGesture(gestures);
+              ShowDown();
+              if (player1.CheckWins() || player2.CheckWins())
+              {
+                Console.ReadLine();
+                break;
+              }
+              Console.WriteLine($"Player 1 wins: {player1.wins}");
+              Console.WriteLine($"Player 2 wins: {player2.wins}");
+              Console.WriteLine("END OF ROUND");
+            }*/
     }
 
     public void ShowDown()
@@ -80,13 +92,13 @@ namespace RPSLS
        * Lizard eats Paper x
        * Paper disproves Spock x
        * Spock vaporizes Rock x 
-       */ 
+       */
 
-       // rock > scissors, lizard
-       // scissors > paper, lizard
-       // paper > rock, spock
-       // lizard > spock, paper
-       // spock > scissors, rock
+      // rock > scissors, lizard
+      // scissors > paper, lizard
+      // paper > rock, spock
+      // lizard > spock, paper
+      // spock > scissors, rock
 
       // if i choose rock, i can only beat scissors and lizard else i lose
 
@@ -98,17 +110,17 @@ namespace RPSLS
         Console.WriteLine("Tie");
         Console.ReadLine();
       }
-      else if(player1.gesture == "rock" && player2.gesture == "scissors" || player1.gesture == "rock" && player2.gesture == "lizard")
-      {
-        Console.WriteLine("Player 1 wins!");
-        player1.wins++;
-      } 
-      else if(player1.gesture == "scissors" && player2.gesture == "paper" || player1.gesture == "scissors" && player2.gesture == "lizard")
+      else if (player1.gesture == "rock" && player2.gesture == "scissors" || player1.gesture == "rock" && player2.gesture == "lizard")
       {
         Console.WriteLine("Player 1 wins!");
         player1.wins++;
       }
-      else if(player1.gesture == "paper" && player2.gesture == "rock" || player1.gesture == "paper" && player2.gesture == "spock")
+      else if (player1.gesture == "scissors" && player2.gesture == "paper" || player1.gesture == "scissors" && player2.gesture == "lizard")
+      {
+        Console.WriteLine("Player 1 wins!");
+        player1.wins++;
+      }
+      else if (player1.gesture == "paper" && player2.gesture == "rock" || player1.gesture == "paper" && player2.gesture == "spock")
       {
         Console.WriteLine("Player 1 Wins!");
         player1.wins++;
