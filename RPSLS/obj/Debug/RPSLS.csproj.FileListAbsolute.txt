@@ -1,0 +1,7 @@
+C:\Users\alexa\Development\devCodeCamp\RPSLS\RPSLS\bin\Debug\RPSLS.exe.config
+C:\Users\alexa\Development\devCodeCamp\RPSLS\RPSLS\bin\Debug\RPSLS.exe
+C:\Users\alexa\Development\devCodeCamp\RPSLS\RPSLS\bin\Debug\RPSLS.pdb
+C:\Users\alexa\Development\devCodeCamp\RPSLS\RPSLS\obj\Debug\RPSLS.csprojAssemblyReference.cache
+C:\Users\alexa\Development\devCodeCamp\RPSLS\RPSLS\obj\Debug\RPSLS.csproj.CoreCompileInputs.cache
+C:\Users\alexa\Development\devCodeCamp\RPSLS\RPSLS\obj\Debug\RPSLS.exe
+C:\Users\alexa\Development\devCodeCamp\RPSLS\RPSLS\obj\Debug\RPSLS.pdb
