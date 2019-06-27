@@ -9,9 +9,14 @@ namespace RPSLS
   public abstract class Player
   {
     public string gesture;
-    public int wins = 0;
+    public int wins;
 
-    public abstract void GetGesture(List<string> g);
+    public Player()
+    {
+      wins = 0;
+    }
+
+    public abstract void GetGesture(List<string> gestures);
  
     public void ShowGesture()
     {

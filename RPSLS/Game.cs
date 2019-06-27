@@ -6,17 +6,18 @@ namespace RPSLS
   class Game
   {
     List<string> gestures;
-    string players;
+
     Player player1;
     Player player2;
 
     public Game()
     {
-      this.gestures = new List<string>() { "rock", "paper", "scissors", "spock", "lizard" };
+      gestures = new List<string>() { "rock", "paper", "scissors", "spock", "lizard" };
     }    
     public string DisplayRules()
     {
-      return "Rock crushes Scissors\n" +
+      return "RULES:\n" + 
+             "Rock crushes Scissors\n" +
              "Scissors cuts Paper\n" +
              "Paper covers Rock\n" +
              "Rock crushes Lizard\n" +
@@ -30,19 +31,20 @@ namespace RPSLS
 
     public void SetupGame()
     {
+      string players;
       Console.WriteLine(DisplayRules());
 
       Console.WriteLine("Select your game mode (Type in 'single player' or 'multiplayer'):");
-      this.players = Console.ReadLine();
+      players = Console.ReadLine();
       Console.WriteLine("\n");
 
-      if (this.players.ToLower().Trim() == "single player")
+      if (players.ToLower().Trim() == "single player")
       {
         // create one human player and one ai player
         this.player1 = new HumanPlayer();
         this.player2 = new AIPlayer();
       }
-      else if (this.players.ToLower().Trim() == "multiplayer")
+      else if (players.ToLower().Trim() == "multiplayer")
       {
         // create two human players
         this.player1 = new HumanPlayer();
@@ -55,7 +57,7 @@ namespace RPSLS
       }
     }
 
-    public void CheckGesture(Player player)
+    private void CheckGesture(Player player)
     {
       if (!this.gestures.Contains(player.gesture))
       {
@@ -77,8 +79,35 @@ namespace RPSLS
         Console.WriteLine($"Player 2 wins: {player2.wins}\n");
         Console.WriteLine("END OF ROUND\n\n");
       }
-      Console.WriteLine("GAME OVER");
-      Console.ReadLine();
+      Console.WriteLine("GAME OVER\n");
+      PlayAgain();
+    }
+
+    private void PlayAgain()
+    {
+      string input;
+
+      Console.WriteLine("Would you like to play again?");
+      input = Console.ReadLine();
+      input = input.ToLower().Trim();
+
+      if (input == "yes") {
+        // reset player wins to 0
+        // call start game
+        player1.wins = 0;
+        player2.wins = 0;
+        StartGame();
+      }
+      else if(input == "no")
+      {
+        Console.WriteLine("\nkbai.");
+        Console.ReadLine();
+        return;
+      }
+      else
+      {
+        PlayAgain();
+      }
     }
 
     public void ShowDown()
