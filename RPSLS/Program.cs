@@ -11,9 +11,10 @@ namespace RPSLS
     static void Main(string[] args)
     {
       // ask user how many human players
-      Console.WriteLine("Select your game mode (Type in 'single player' or 'multiplayer'):");
+      /*Console.WriteLine("Select your game mode (Type in 'single player' or 'multiplayer'):");*/
       // will send the answer through to the Game constructor
-      Game rpsls = new Game(Console.ReadLine());
+      /*Game rpsls = new Game(Console.ReadLine());*/
+      Game rpsls = new Game();
       rpsls.SetupGame();
       rpsls.StartGame();
     }

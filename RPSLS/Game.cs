@@ -11,39 +11,62 @@ namespace RPSLS
     Player player1;
     Player player2;
 
+    public Game()
+    {
+      this.gestures = new List<string>() { "rock", "paper", "scissors", "spock", "lizard" };
+    }
+
     public Game(string players)
     {
       this.gestures = new List<string>() { "rock", "paper", "scissors", "spock", "lizard" };
       this.players = players;
+    }    
+    public string DisplayRules()
+    {
+      return "Rock crushes Scissors\n" +
+             "Scissors cuts Paper\n" +
+             "Paper covers Rock\n" +
+             "Rock crushes Lizard\n" +
+             "Lizard poisons Spock\n" +
+             "Spock smashes Scissors\n" +
+             "Scissors decapitates Lizard\n" +
+             "Lizard eats Paper\n" +
+             "Paper disproves Spock\n" +
+             "Spock vaporizes Rock\n\n";
     }
 
-    // helper method to check userinput
-    public bool CheckInput(string input, List<string> actions)
-    {
-      for (int i = 0; i < actions.Count; i++)
-      {
-        if (input != actions[i])
-        {
-          return false;
-        }
-      }
-      return true;
-    }
     public void SetupGame()
     {
-      // call check input helper method in here before creating player objects
+      Console.WriteLine(DisplayRules());
 
-      if (players == "single player")
+      Console.WriteLine("Select your game mode (Type in 'single player' or 'multiplayer'):");
+      this.players = Console.ReadLine();
+
+      if (this.players.ToLower().Trim() == "single player")
       {
         // create one human player and one ai player
         this.player1 = new HumanPlayer();
         this.player2 = new AIPlayer();
       }
-      else if (players == "multiplayer")
+      else if (this.players.ToLower().Trim() == "multiplayer")
       {
         // create two human players
         this.player1 = new HumanPlayer();
         this.player2 = new HumanPlayer();
+      }
+      else
+      {
+        Console.WriteLine("Please enter in either 'single player' or 'multiplayer'.");
+        SetupGame();
+      }
+    }
+
+    public void CheckGesture(Player player)
+    {
+      if (!this.gestures.Contains(player.gesture))
+      {
+        Console.WriteLine("\n Please enter your gesture correctly. \n");
+        player1.GetGesture(this.gestures);
       }
     }
     public void StartGame()
@@ -54,7 +77,9 @@ namespace RPSLS
       while (this.player1.wins < 2 && this.player2.wins < 2)
       {
         player1.GetGesture(gestures);
+        CheckGesture(player1);
         player2.GetGesture(gestures);
+        CheckGesture(player2);
         ShowDown();
         Console.WriteLine($"Player 1 wins: {player1.wins}");
         Console.WriteLine($"Player 2 wins: {player2.wins}");

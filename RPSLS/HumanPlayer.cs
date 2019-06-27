@@ -25,11 +25,7 @@ namespace RPSLS
       }
 
       this.gesture = Console.ReadLine();
-
-      // checks gesture input
-      
+      this.gesture = this.gesture.ToLower().Trim();
     }
-
-
   }
 }
