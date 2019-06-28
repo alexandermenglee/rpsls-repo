@@ -17,38 +17,50 @@ namespace RPSLS
     public string DisplayRules()
     {
       return "RULES:\n" + 
-             "Rock crushes Scissors\n" +
-             "Scissors cuts Paper\n" +
-             "Paper covers Rock\n" +
-             "Rock crushes Lizard\n" +
-             "Lizard poisons Spock\n" +
-             "Spock smashes Scissors\n" +
-             "Scissors decapitates Lizard\n" +
-             "Lizard eats Paper\n" +
-             "Paper disproves Spock\n" +
-             "Spock vaporizes Rock\n\n";
+             "1. Rock crushes Scissors\n" +
+             "2. Scissors cuts Paper\n" +
+             "3. Paper covers Rock\n" +
+             "4. Rock crushes Lizard\n" +
+             "6. Lizard poisons Spock\n" +
+             "7. Spock smashes Scissors\n" +
+             "8. Scissors decapitates Lizard\n" +
+             "9. Lizard eats Paper\n" +
+             "10. Paper disproves Spock\n" +
+             "11. Spock vaporizes Rock\n\n";
     }
 
     public void SetupGame()
     {
-      string players;
+      string gameMode;
       Console.WriteLine(DisplayRules());
 
       Console.WriteLine("Select your game mode (Type in 'single player' or 'multiplayer'):");
-      players = Console.ReadLine();
+      gameMode = Console.ReadLine();
       Console.WriteLine("\n");
 
-      if (players.ToLower().Trim() == "single player")
+      if (gameMode.ToLower().Trim() == "single player")
       {
         // create one human player and one ai player
-        this.player1 = new HumanPlayer();
+        string name;
+        Console.WriteLine("Enter in a name: ");
+        name = Console.ReadLine();
+        Console.WriteLine("\n");
+        this.player1 = new HumanPlayer(name);
         this.player2 = new AIPlayer();
       }
-      else if (players.ToLower().Trim() == "multiplayer")
+      else if (gameMode.ToLower().Trim() == "multiplayer")
       {
+        string name1;
+        string name2;
+        Console.WriteLine("Enter in player 1's name: ");
+        name1 = Console.ReadLine();
+        Console.WriteLine("\n");
+        Console.WriteLine("Enter in player 2's name: ");
+        name2 = Console.ReadLine();
+        Console.WriteLine("\n");
         // create two human players
-        this.player1 = new HumanPlayer();
-        this.player2 = new HumanPlayer();
+        this.player1 = new HumanPlayer(name1);
+        this.player2 = new HumanPlayer(name2);
       }
       else
       {
@@ -69,14 +81,16 @@ namespace RPSLS
     {
       while (this.player1.wins < 2 && this.player2.wins < 2)
       {
-        Console.WriteLine("START OF ROUND");
+        Console.WriteLine("\nSTART OF ROUND\n");
+        Console.WriteLine($"{player1.name}'s turn!");
         player1.GetGesture(gestures);
         CheckGesture(player1);
+        Console.WriteLine($"{player2.name}'s turn!");
         player2.GetGesture(gestures);
         CheckGesture(player2);
         ShowDown();
-        Console.WriteLine($"Player 1 wins: {player1.wins}");
-        Console.WriteLine($"Player 2 wins: {player2.wins}\n");
+        Console.WriteLine($"{player1.name}'s total wins: {player1.wins}");
+        Console.WriteLine($"{player2.name}'s total wins: {player2.wins}\n");
         Console.WriteLine("END OF ROUND\n\n");
       }
       Console.WriteLine("GAME OVER\n");
@@ -87,7 +101,7 @@ namespace RPSLS
     {
       string input;
 
-      Console.WriteLine("Would you like to play again?");
+      Console.WriteLine("Would you like to play again? (Enter 'yes' or 'no')");
       input = Console.ReadLine();
       input = input.ToLower().Trim();
 
@@ -106,6 +120,7 @@ namespace RPSLS
       }
       else
       {
+        Console.WriteLine("Please enter 'yes' or 'no'");
         PlayAgain();
       }
     }
@@ -122,32 +137,32 @@ namespace RPSLS
       }
       else if (player1.gesture == "rock" && player2.gesture == "scissors" || player1.gesture == "rock" && player2.gesture == "lizard")
       {
-        Console.WriteLine("\nPlayer 1 is the winner!\n");
+        Console.WriteLine($"\n {player1.name} is the winner!\n");
         player1.wins++;
       }
       else if (player1.gesture == "scissors" && player2.gesture == "paper" || player1.gesture == "scissors" && player2.gesture == "lizard")
       {
-        Console.WriteLine("\nPlayer 1 is the winner!\n");
+        Console.WriteLine($"\n{player1.name} is the winner!\n");
         player1.wins++;
       }
       else if (player1.gesture == "paper" && player2.gesture == "rock" || player1.gesture == "paper" && player2.gesture == "spock")
       {
-        Console.WriteLine("\nPlayer 1 is the winner!\n");
+        Console.WriteLine($"\n{player1.name} is the winner!\n");
         player1.wins++;
       }
       else if (player1.gesture == "lizard" && player2.gesture == "spock" || player1.gesture == "lizard" && player2.gesture == "paper")
       {
-        Console.WriteLine("\nPlayer 1 is the winner!\n");
+        Console.WriteLine($"\n{player1.name} is the winner!\n");
         player1.wins++;
       }
       else if (player1.gesture == "spock" && player2.gesture == "scissors" || player1.gesture == "spock" && player2.gesture == "rock")
       {
-        Console.WriteLine("\nPlayer 1 is the winner!\n");
+        Console.WriteLine($"\n{player1.name} is the winner!\n");
         player1.wins++;
       }
       else
       {
-        Console.WriteLine("\nPlayer 2 is the winner!\n");
+        Console.WriteLine($"\n{player2.name} is the winner!\n");
         player2.wins++;
       }
     }

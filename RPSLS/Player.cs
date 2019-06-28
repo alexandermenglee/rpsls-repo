@@ -10,6 +10,7 @@ namespace RPSLS
   {
     public string gesture;
     public int wins;
+    public string name;
 
     public Player()
     {
@@ -20,7 +21,7 @@ namespace RPSLS
  
     public void ShowGesture()
     {
-      Console.WriteLine($"{this} chose {this.gesture}");
+      Console.WriteLine($"{this.name} chose {this.gesture}");
     }
 
     public bool CheckWins()

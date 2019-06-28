@@ -8,17 +8,16 @@ namespace RPSLS
 {
   public class HumanPlayer : Player
   {
-
-    public HumanPlayer()
+    public HumanPlayer(string name)
     {
-
+      this.name = name;
     }
 
     // grabs user input and saves it as their gesture
     public override void GetGesture(List<string> gestures)
     {
       // displays options from list bc user story said so
-      Console.WriteLine("Choose your weapon!");
+      Console.WriteLine("\nChoose your weapon!");
       for(int i = 0; i < gestures.Count; i++)
       {
         Console.WriteLine($"{i} {gestures[i]}");

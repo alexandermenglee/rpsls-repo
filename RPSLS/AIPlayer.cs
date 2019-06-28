@@ -8,10 +8,10 @@ namespace RPSLS
 {
   public class AIPlayer : Player
   {
-    
+   
     public AIPlayer()
     {
-
+      this.name = "Xander";
     }
     public override void GetGesture(List<string> gestures)
     {
